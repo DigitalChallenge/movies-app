@@ -9,9 +9,12 @@
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	.navbar {
 		background: rgba(0, 0, 0, 0.5);
 		padding: 10px 0;
+		@media (max-width: theme('screens.tablet')) {
+			padding: 10px;
+		}
 	}
 </style>
