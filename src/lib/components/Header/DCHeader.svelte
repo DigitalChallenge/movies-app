@@ -6,19 +6,9 @@
 	<Navbar />
 </header>
 
-<style lang="scss">
+<style>
 	.header {
 		background: url('/images/header-bg.png') no-repeat center;
-		background-size: cover;
 		height: 600px;
-		@media (max-width: theme('screens.desktop')) {
-			height: 500px;
-		}
-		@media (max-width: theme('screens.laptop')) {
-			height: 400px;
-		}
-		@media (max-width: theme('screens.tablet')) {
-			height: 300px;
-		}
 	}
 </style>
