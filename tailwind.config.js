@@ -2,6 +2,9 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
+    container: {
+      padding: '1rem',
+    },
     screens: {
       'tablet': '640px',
       'laptop': '1024px',

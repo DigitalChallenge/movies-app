@@ -10,8 +10,8 @@
 <style>
 	.recent-card {
 		height: 200px;
-		background: url('/images/recent-catd-bg.png') no-repeat center;
-		background-size: contain;
+		background: url('/images/recent-catd-bg.png') no-repeat top;
+		background-size: cover;
 		position: relative;
 	}
 	.recent-card__progress {
