@@ -2,6 +2,10 @@
 	import Search from '$lib/components/common/Search.svelte';
 	import Pagination from '../common/Pagination.svelte';
 	import FilmCard from './FilmCard.svelte';
+	import { api } from '$lib/database/films';
+
+	const films = api.getFilms();
+	console.log(films);
 </script>
 
 <div class="films">
@@ -11,12 +15,9 @@
 			<Search />
 		</div>
 		<div class="films__grid">
-			<FilmCard />
-			<FilmCard />
-			<FilmCard />
-			<FilmCard />
-			<FilmCard />
-			<FilmCard />
+			{#each films as film}
+				<FilmCard rate={film.rating} img={film.poster.previewUrl} />
+			{/each}
 		</div>
 		<div class="flex justify-center tablet:justify-end">
 			<Pagination />

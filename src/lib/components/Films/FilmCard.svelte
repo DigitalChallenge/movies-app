@@ -1,14 +1,33 @@
-<div class="film-card">
+<script lang="ts">
+	type Rate = {
+		kp: number;
+		imdb: number;
+	};
+	export let rate: Rate;
+	export let img: string;
+
+	let rateStatus: string = 'high';
+	if (rate.kp < 7) {
+		rateStatus = 'middle';
+	}
+	if (rate.kp < 4) {
+		rateStatus = 'low';
+	}
+</script>
+
+<div
+	class="film-card"
+	style:background={`url('${img}') no-repeat top`}
+	style:background-size="cover"
+>
 	<div class="film-card__shadow">
-		<span class="film-card__rate"> 7.1 </span>
+		<span class="film-card__rate film-card__rate_{rateStatus}">{rate.kp.toFixed(1)}</span>
 	</div>
 </div>
 
 <style>
 	.film-card {
 		height: 500px;
-		background: url('/images/film-card-bg.png') no-repeat top;
-		background-size: cover;
 		border-radius: 10px;
 	}
 	.film-card__shadow {
@@ -16,8 +35,16 @@
 		padding: 5px 15px;
 	}
 	.film-card__rate {
-		background: var(--secondary);
 		padding: 0 10px;
 		border-radius: 3px;
+	}
+	.film-card__rate_high {
+		background: var(--secondary);
+	}
+	.film-card__rate_middle {
+		background: #cbc644;
+	}
+	.film-card__rate_low {
+		background: #d49314;
 	}
 </style>
