@@ -5,7 +5,6 @@
 	import { api } from '$lib/database/films';
 
 	const films = api.getFilms();
-	console.log(films);
 </script>
 
 <div class="films">
@@ -16,7 +15,9 @@
 		</div>
 		<div class="films__grid">
 			{#each films as film}
-				<FilmCard rate={film.rating} img={film.poster.previewUrl} />
+				<a href="/film-{film.id}">
+					<FilmCard rate={film.rating} img={film.poster.previewUrl} />
+				</a>
 			{/each}
 		</div>
 		<div class="flex justify-center tablet:justify-end">

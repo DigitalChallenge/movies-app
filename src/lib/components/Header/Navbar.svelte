@@ -4,7 +4,7 @@
 
 <div class="navbar">
 	<div class="container mx-auto flex items-center justify-between">
-		<img src="/LOGO.svg" alt="Logo" />
+		<a href="/"><img src="/LOGO.svg" alt="Logo" /></a>
 		<DcButton>Войти</DcButton>
 	</div>
 </div>

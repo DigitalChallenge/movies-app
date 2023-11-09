@@ -1,6 +1,12 @@
+<script lang="ts">
+	import type { IPerson } from '../../database/films';
+
+	export let person: IPerson;
+</script>
+
 <div class="actor-card">
-	<img class="actor-card__img" src="/images/actor.png" alt="actor-name" />
-	<p class="actor-card__name">Эндрю Гарфилд</p>
+	<img class="actor-card__img" src={person.photo} alt="actor-name" />
+	<p class="actor-card__name">{person.name}</p>
 </div>
 
 <style>

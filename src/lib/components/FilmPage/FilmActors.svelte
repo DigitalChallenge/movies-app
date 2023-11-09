@@ -3,6 +3,10 @@
 	import { register, type SwiperContainer } from 'swiper/element/bundle';
 	import type { SwiperOptions } from 'swiper/types';
 	import ActorCard from './ActorCard.svelte';
+	import type { IFilm } from '../../database/films';
+	export let film: IFilm;
+	$: actors = film.persons.filter((i) => i.enProfession === 'actor');
+
 	register();
 	let swiperEl: SwiperContainer;
 
@@ -36,14 +40,9 @@
 	<div class="container mx-auto">
 		<h2 class="mb-7">Актеры</h2>
 		<swiper-container bind:this={swiperEl} init="false">
-			<swiper-slide><ActorCard /></swiper-slide>
-			<swiper-slide><ActorCard /></swiper-slide>
-			<swiper-slide><ActorCard /></swiper-slide>
-			<swiper-slide><ActorCard /></swiper-slide>
-			<swiper-slide><ActorCard /></swiper-slide>
-			<swiper-slide><ActorCard /></swiper-slide>
-			<swiper-slide><ActorCard /></swiper-slide>
-			<swiper-slide><ActorCard /></swiper-slide>
+			{#each actors as actor}
+				<swiper-slide><ActorCard person={actor} /></swiper-slide>
+			{/each}
 		</swiper-container>
 	</div>
 </div>

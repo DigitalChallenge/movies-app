@@ -1,9 +1,7 @@
 <script lang="ts">
-	type Rate = {
-		kp: number;
-		imdb: number;
-	};
-	export let rate: Rate;
+	import type { IRate } from '../../database/films';
+
+	export let rate: IRate;
 	export let img: string;
 
 	let rateStatus: string = 'high';

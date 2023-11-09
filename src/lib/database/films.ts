@@ -53509,9 +53509,61 @@ const films = [
 ]
 
 function getFilms() {
-  return films.slice(8, 16)
+  return films.slice(0, 8)
+}
+
+function getFilmById(id: number) {
+  return films.find((i) => i.id === id)
 }
 
 export const api = {
-  getFilms
+  getFilms,
+  getFilmById
 }
+
+export interface IPerson {
+  id: number,
+  photo: string,
+  name: string,
+  enName: string,
+  description: string | null,
+  profession: string,
+  enProfession: string
+}
+
+export interface IRate {
+  kp: number;
+  imdb: number;
+};
+export interface IFilm {
+  id: number,
+  name: string,
+  rating: IRate,
+  year: number,
+  genres: Array<{ name: string }>,
+  countries: Array<{ name: string }>,
+  persons: Array<IPerson>,
+  shortDescription: string,
+  description: string,
+  backdrop: {
+    url: string,
+    previewUrl: string
+  },
+  facts: Array<{value: string}>
+}
+
+
+
+
+// function test(page, limit) {
+//   if (page === 0 || page === 1) {
+//     return [(page - 1) * (limit - 1), page * limit]
+//   }
+//   return [(page - 1) * (limit), page * limit]
+// }
+
+// console.log(test(1, 8));
+// console.log(test(2, 8));
+// console.log(test(3, 8));
+// console.log(test(4, 8));
+// console.log(test(5, 8));

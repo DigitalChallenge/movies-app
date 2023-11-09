@@ -1,32 +1,47 @@
+<script lang="ts">
+	import type { IFilm } from '../../database/films';
+
+	export let film: IFilm;
+
+	$: genres = film.genres.map((i) => i.name);
+	$: countries = film.countries.map((i) => i.name);
+	$: directors = film.persons.filter((i) => i.enProfession === 'director').map((i) => i.name);
+</script>
+
 <div class="container mx-auto">
 	<div class="film-info">
 		<div class="film-info__details">
-			<h1>ПО СООБРАЖЕНИЯМ СОВЕСТИ</h1>
+			<h1>{film.name}</h1>
 			<div>
 				<div>
-					<b>Год: </b>2016
+					<b>Год: </b>{film.year}
 				</div>
 				<div>
-					<b>Жанр: </b>биография, военный, драма, история
+					<b>Жанр: </b>{genres.join(', ')}
 				</div>
 				<div>
-					<b>Страна: </b>Австралия, США, Великобритания, Китай
+					<b>Страна: </b>{countries.join(', ')}
 				</div>
 				<div>
-					<b>Режиссер: </b>Мэл Гибсон
+					<b>{directors.length > 1 ? 'Режиссеры' : 'Режиссер'}: </b>{directors.join(', ')}
 				</div>
 			</div>
 			<div class="film-info__description">
-				Восхождение циника-гедониста на бизнес-олимп 1980-х. Блистательный тандем Леонардо ДиКаприо
-				и Мартина Скорсезе
+				{film.shortDescription}
 			</div>
 			<div class="film-info__rate">
-				<div class="flex items-center gap-2"><img src="/icons/kp.svg" alt="kp" /> 7.1</div>
-				<div class="flex items-center gap-2"><img src="/icons/imdb.svg" alt="kp" /> 7.1</div>
+				<div class="flex items-center gap-2">
+					<img src="/icons/kp.svg" alt="kp" />
+					{film.rating.kp.toFixed(1)}
+				</div>
+				<div class="flex items-center gap-2">
+					<img src="/icons/imdb.svg" alt="imdb" />
+					{film.rating.imdb.toFixed(1)}
+				</div>
 			</div>
 		</div>
 		<div class="film-info__img">
-			<img src="/images/film-bg.png" alt="film-name" />
+			<img src={film.backdrop.url} alt={film.name} />
 		</div>
 	</div>
 </div>
