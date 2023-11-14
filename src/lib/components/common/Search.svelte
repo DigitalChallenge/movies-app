@@ -1,6 +1,22 @@
+<script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+	import { debounce } from 'lodash';
+	const handler = debounce(() => {
+		dispatch('input', val);
+	}, 500);
+	const dispatch = createEventDispatcher();
+	let val = '';
+</script>
+
 <div class="search">
 	<img class="search__img" src="/icons/search.svg" alt="search" />
-	<input class="search__input" type="text" placeholder="Поиск" />
+	<input
+		class="search__input"
+		type="text"
+		placeholder="Поиск"
+		bind:value={val}
+		on:input={handler}
+	/>
 </div>
 
 <style>

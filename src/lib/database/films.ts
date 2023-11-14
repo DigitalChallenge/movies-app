@@ -53507,9 +53507,24 @@ const films = [
     ]
   }
 ]
+function getParams(page: number, limit: number) {
+  if (page === 0 || page === 1) {
+    return [(page - 1) * (limit - 1), page * limit]
+  }
+  return [(page - 1) * (limit), page * limit]
+}
+const limit = 8
 
-function getFilms() {
-  return films.slice(0, 8)
+function getFilms(page: number, query?: string) {
+  let rawData = films
+  if(query) {
+    rawData = films.filter(i=>i.name.toLowerCase().startsWith(query.toLowerCase()))
+  }
+  const maxPage = Math.ceil(rawData.length / limit)
+  return {
+    items: rawData.slice(...getParams(page, limit)), 
+    maxPage
+  }
 }
 
 function getFilmById(id: number) {
@@ -53555,12 +53570,7 @@ export interface IFilm {
 
 
 
-// function test(page, limit) {
-//   if (page === 0 || page === 1) {
-//     return [(page - 1) * (limit - 1), page * limit]
-//   }
-//   return [(page - 1) * (limit), page * limit]
-// }
+
 
 // console.log(test(1, 8));
 // console.log(test(2, 8));

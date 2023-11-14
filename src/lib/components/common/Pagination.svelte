@@ -1,8 +1,24 @@
+<script lang="ts">
+	export let maxPage: number;
+	export let currentPage: number;
+</script>
+
 <ul class="pagination">
 	<li>
-		<a class="pagination__item" href="/"><img src="/icons/left.svg" alt="left" /></a>
+		<a class="pagination__item" href="/?page={currentPage - 1}#title"
+			><img src="/icons/left.svg" alt="left" /></a
+		>
 	</li>
-	<li>
+	{#each Array(maxPage) as _, idx}
+		<li>
+			<a
+				class="pagination__item"
+				class:pagination__item_active={currentPage === idx + 1}
+				href="/?page={idx + 1}#title">{idx + 1}</a
+			>
+		</li>
+	{/each}
+	<!-- <li>
 		<a class="pagination__item pagination__item_active" href="/">1</a>
 	</li>
 	<li>
@@ -13,9 +29,9 @@
 	</li>
 	<li>
 		<a class="pagination__item" href="/">4</a>
-	</li>
+	</li> -->
 	<li>
-		<a class="pagination__item" href="/">
+		<a class="pagination__item" href="/?page={currentPage + 1}#title">
 			<img src="/icons/right.svg" alt="right" />
 		</a>
 	</li>

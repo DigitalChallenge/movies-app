@@ -3,25 +3,33 @@
 	import Pagination from '../common/Pagination.svelte';
 	import FilmCard from './FilmCard.svelte';
 	import { api } from '$lib/database/films';
+	import {} from '$app/stores';
+	import { page } from '$app/stores';
 
-	const films = api.getFilms();
+	let searchQuery = '';
+	$: currentPage = Number($page.url.searchParams.get('page')) || 1;
+	$: filmsData = api.getFilms(currentPage, searchQuery);
 </script>
 
 <div class="films">
 	<div class="container mx-auto">
-		<div class="flex items-center justify-between mb-[30px]">
+		<div class="flex items-center justify-between mb-[30px] relative">
+			<!-- svelte-ignore a11y-missing-content -->
+			<a id="title" class="anchor" />
 			<h2>Все фильмы</h2>
-			<Search />
+			<Search on:input={(e) => (searchQuery = e.detail)} />
 		</div>
 		<div class="films__grid">
-			{#each films as film}
-				<a href="/film-{film.id}">
-					<FilmCard rate={film.rating} img={film.poster.previewUrl} />
-				</a>
+			{#each filmsData.items as film}
+				{#key film.id}
+					<a href="/film-{film.id}">
+						<FilmCard rate={film.rating} img={film.poster.previewUrl} />
+					</a>
+				{/key}
 			{/each}
 		</div>
 		<div class="flex justify-center tablet:justify-end">
-			<Pagination />
+			<Pagination {currentPage} maxPage={filmsData.maxPage} />
 		</div>
 	</div>
 </div>
@@ -47,5 +55,9 @@
 		@media (max-width: theme('screens.tablet')) {
 			grid-template-columns: 1fr;
 		}
+	}
+	.anchor {
+		position: absolute;
+		top: -20px;
 	}
 </style>
