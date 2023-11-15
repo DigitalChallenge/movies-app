@@ -3,16 +3,15 @@
 	import { onMount } from 'svelte';
 	import { register, type SwiperContainer } from 'swiper/element/bundle';
 	import type { SwiperOptions } from 'swiper/types';
+	import { api, type IFilm } from '$lib/database/films';
+
+	const resents: Array<IFilm> = api.getResents();
 	register();
 	let swiperEl: SwiperContainer;
 
 	const swiperParams: SwiperOptions = {
 		slidesPerView: 1,
 		spaceBetween: 20,
-		loop: true,
-		autoplay: {
-			delay: 1000
-		},
 		injectStyles: [
 			`
 			.swiper {
@@ -49,14 +48,9 @@
 			<RecentCard />
 		</div> -->
 		<swiper-container bind:this={swiperEl} init="false">
-			<swiper-slide><RecentCard /></swiper-slide>
-			<swiper-slide><RecentCard /></swiper-slide>
-			<swiper-slide><RecentCard /></swiper-slide>
-			<swiper-slide><RecentCard /></swiper-slide>
-			<swiper-slide><RecentCard /></swiper-slide>
-			<swiper-slide><RecentCard /></swiper-slide>
-			<swiper-slide><RecentCard /></swiper-slide>
-			<swiper-slide><RecentCard /></swiper-slide>
+			{#each resents as film}
+				<swiper-slide><RecentCard {film} /></swiper-slide>
+			{/each}
 		</swiper-container>
 	</div>
 </div>

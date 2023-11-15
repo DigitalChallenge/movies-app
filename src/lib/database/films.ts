@@ -1,5 +1,7 @@
+
 const films = [
   {
+    "seen": 50,
     "status": null,
     "rating": {
       "kp": 8.815,
@@ -509,6 +511,7 @@ const films = [
     ]
   },
   {
+    "seen": 30,
     "status": null,
     "rating": {
       "kp": 8.562,
@@ -962,6 +965,7 @@ const films = [
     ]
   },
   {
+    "seen": 45,
     "status": null,
     "rating": {
       "kp": 7.993,
@@ -1511,6 +1515,7 @@ const films = [
     ]
   },
   {
+    "seen": 20,
     "id": 41519,
     "type": "movie",
     "name": "Брат",
@@ -1845,6 +1850,7 @@ const films = [
     ]
   },
   {
+    "seen": 90,
     "status": null,
     "rating": {
       "kp": 7.606,
@@ -2301,6 +2307,7 @@ const films = [
     ]
   },
   {
+    "seen": 100,
     "status": null,
     "rating": {
       "kp": 8.275,
@@ -2820,6 +2827,7 @@ const films = [
     ]
   },
   {
+    "seen": 45,
     "status": null,
     "rating": {
       "kp": 7.972,
@@ -3473,6 +3481,7 @@ const films = [
     ]
   },
   {
+    "seen": 45,
     "status": null,
     "rating": {
       "kp": 9.108,
@@ -3989,6 +3998,7 @@ const films = [
     ]
   },
   {
+    "seen": 80,
     "status": null,
     "rating": {
       "kp": 8.103,
@@ -4399,6 +4409,7 @@ const films = [
     ]
   },
   {
+    "seen": 70,
     "id": 464963,
     "alternativeName": "Game of Thrones",
     "countries": [
@@ -53515,6 +53526,9 @@ function getParams(page: number, limit: number) {
 }
 const limit = 8
 
+function getResents() {
+  return films.slice(0, 11)
+}
 function getFilms(page: number, query?: string) {
   let rawData = films
   if(query) {
@@ -53533,7 +53547,8 @@ function getFilmById(id: number) {
 
 export const api = {
   getFilms,
-  getFilmById
+  getFilmById,
+  getResents
 }
 
 export interface IPerson {
@@ -53552,6 +53567,7 @@ export interface IRate {
 };
 export interface IFilm {
   id: number,
+  seen?: number,
   name: string,
   rating: IRate,
   year: number,
@@ -53566,14 +53582,3 @@ export interface IFilm {
   },
   facts: Array<{value: string}>
 }
-
-
-
-
-
-
-// console.log(test(1, 8));
-// console.log(test(2, 8));
-// console.log(test(3, 8));
-// console.log(test(4, 8));
-// console.log(test(5, 8));

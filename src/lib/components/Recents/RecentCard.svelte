@@ -1,16 +1,21 @@
+<script lang="ts">
+	import type { IFilm } from '../../database/films';
+
+	export let film: IFilm;
+</script>
+
 <div>
-	<div class="recent-card">
+	<div class="recent-card" style="background: url({film.backdrop.previewUrl})no-repeat top;">
 		<div class="recent-card__progress">
-			<div class="recent-card__progress-fill" />
+			<div class="recent-card__progress-fill" style="width: {film.seen}%;" />
 		</div>
 	</div>
-	<div class="recent-card__name">Джентельмены</div>
+	<div class="recent-card__name">{film.name}</div>
 </div>
 
 <style>
 	.recent-card {
 		height: 200px;
-		background: url('/images/recent-catd-bg.png') no-repeat top;
 		background-size: cover;
 		position: relative;
 	}
@@ -25,7 +30,6 @@
 	.recent-card__progress-fill {
 		background: var(--primary);
 		height: 6px;
-		width: 70%;
 	}
 	.recent-card__name {
 		padding-left: 20px;
